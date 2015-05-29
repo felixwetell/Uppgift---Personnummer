@@ -34,6 +34,12 @@ def valid_pnr?(pnr:)
     end
 
   end
+
+
+  if total % 10 == 0
+    return true
+
+  else
     return false
   end
 
