@@ -45,3 +45,4 @@ def valid_pnr?(pnr:)
 
 end
 
+# p valid_pnr?(pnr: "980923-4546")
