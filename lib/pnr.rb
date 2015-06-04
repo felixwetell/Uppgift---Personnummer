@@ -4,8 +4,7 @@ require 'pry-byebug'
 def valid_pnr?(pnr:)
 
   total = 0
-  array = pnr.split(//)
-  numbers = array.map(&:to_i)
+  numbers = pnr.each_char.map {|c| c.to_i}
   if numbers.empty?
     raise ArgumentError
   end
@@ -35,13 +34,12 @@ def valid_pnr?(pnr:)
 
   end
 
-
   if total % 10 == 0
     return true
-
   else
     return false
   end
 
 end
 
+p valid_pnr?(pnr: " ")
