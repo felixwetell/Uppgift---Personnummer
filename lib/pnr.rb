@@ -5,7 +5,8 @@ def valid_pnr?(pnr:)
 
   total = 0
   array = pnr.split(//)
-  numbers = array.map(&:to_i)
+  numbers = array.map { |c| c.to_i }
+
   if numbers.empty?
     raise ArgumentError
   end
@@ -16,32 +17,25 @@ def valid_pnr?(pnr:)
 
   else
 
-    numbers.delete_at(6)
     total += numbers[-1]
     numbers.delete_at(-1)
 
-    while numbers.length != 0
-      if numbers[0] > 5
-        numbers[0] *= 2
-        numbers[0] -= 9
-        total += numbers[0]
-      else
-        total += numbers[1]
-      end
-      numbers.delete_at(0)
-      numbers.delete_at(1)
-
+    numbers.each_index  |in|
+      number
     end
 
   end
 
+  p total
 
   if total % 10 == 0
-    return true
+    true
 
   else
-    return false
+    false
+
   end
 
 end
 
+p valid_pnr?(pnr: '781206-4613')
