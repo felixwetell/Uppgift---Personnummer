@@ -2,40 +2,30 @@ require 'pry'
 require 'pry-byebug'
 
 def valid_pnr?(pnr:)
+  raise ArgumentError if pnr.empty?
 
-  total = 0
-  array = pnr.split(//)
-  numbers = array.map { |c| c.to_i }
+  sum  = 0
+  numbers = pnr.delete '-'
+  numbers1 = numbers.split(//).map {|n| n.to_i}
+  sum += numbers1[-1]
+  numbers1.pop
 
-  if numbers.empty?
-    raise ArgumentError
-  end
-
-  if numbers.length != 11
-
-    return false
-
-  else
-
-    total += numbers[-1]
-    numbers.delete_at(-1)
-
-    numbers.each_index  |in|
-      number
+  numbers1.each_with_index do |value, index|
+    binding.pry
+    if index % 2 == 0
+      if value > 5
+        number = 2 * value - 9
+        sum += number
+      else
+        sum += 2 * value
+      end
+    else
+      sum += value
     end
 
   end
-
-  p total
-
-  if total % 10 == 0
-    true
-
-  else
-    false
-
-  end
+  return true if sum % 10 == 0
 
 end
 
-p valid_pnr?(pnr: '781206-4613')
+# p valid_pnr?(pnr: '811218-9876')
