@@ -24,7 +24,11 @@ def valid_pnr?(pnr:)
     end
 
   end
-  return true if sum % 10 == 0
+  if sum % 10 == 0
+    return true
+  else
+    return false
+  end
 
 end
 
